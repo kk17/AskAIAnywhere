@@ -21,7 +21,7 @@ export PYTHONPATH=.:lib
 /usr/bin/python3 \
     ask_ai.py \
     -v \
-    --model-provider hugchat_OpenAssistant/oasst-sft-6-llama-30b-xor \
+    --model-provider openai_gpt-4o-mini \
     translate chinese \
     "python code to use keyboard package to trigger the cmd+v shortcut. the code should works on mac os and windows os and linux."
 ```

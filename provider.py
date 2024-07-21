@@ -40,7 +40,7 @@ class AIProvider(abc.ABC):
         return self.complete_and_remove_prompt(promt)
 
     def improve_writing(self, context):
-        promt = f"Improve the writing:\n{context}"
+        promt = f"Improve the writing, fix spelling errors of the text in the next line. Do not change abbreviations to full forms of words:\n{context}"
         return self.complete_and_remove_prompt(promt)
 
     def continue_writing(self, context, page_title=""):
@@ -152,12 +152,11 @@ class HugChatProvider(AIProvider):
 
 class OpenAIProvider(AIProvider):
 
-    def __init__(self, model='gpt-3.5-turbo', api_key=None):
+    def __init__(self, model='gpt-4o-mini', api_key=None):
         self.model = model
         self.name = f"openai_{model}"
         self.api_key = api_key if api_key is not None else os.getenv(
             'OPENAI_API_KEY')
-
         # Set the OpenAI API key
         openai.api_key = self.api_key
         self.client = openai.ChatCompletion if self.is_chat_model else openai.Completion
